@@ -2,47 +2,66 @@
 import React, { useState } from "react";
 import styles from "./login.module.css";
 import classNames from "classnames/bind";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginSuccess, loginFailure } from '../../store/authSlice';
+import axiosInstance from '../../axiosConfig';
+import { useNavigate } from 'react-router-dom'; // Thêm useNavigate
 const cx = classNames.bind(styles);
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("John Doe"); // Hardcoded user name
-  const [error, setError] = useState("");
-
-  // Hardcoded credentials for testing
-  const validEmail = "test@example.com";
-  const validPassword = "password123";
+  const [userName, setUserName] = useState("");
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
+  const navigate = useNavigate(); // Khai báo useNavigate
 
   const showLogin = () => setIsLogin(true);
   const showSignup = () => setIsLogin(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === validEmail && password === validPassword) {
-      // Successful login
-      localStorage.setItem("isLoggedIn", "true"); // Simulate login state
-      localStorage.setItem("userName", userName); // Store user name
-      window.location.href = "/"; // Redirect to home page
-    } else {
-      setError("Invalid email or password");
+    try {
+      const response = await axiosInstance.post("/auth/login", {
+        email: email,
+        password: password,
+      });
+      const { data } = response;
+      console.log("Response from /auth/login:", data); // Log toàn bộ response
+      console.log("Received token:", data.data.token); // Log token trước khi dispatch
+      const { token, email: userEmail, role } = data.data;
+      dispatch(loginSuccess({ userName: userEmail, token }));
+      navigate("/"); // Sử dụng navigate thay vì window.location.href
+    } catch (err) {
+      dispatch(loginFailure("Invalid email or password"));
     }
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    // For testing, just set login state on signup
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userName", userName);
-    window.location.href = "/";
+    try {
+      const response = await axiosInstance.post("/auth/register", {
+        email: email,
+        password: password,
+        name: userName,
+      });
+      const { data } = response;
+      console.log("Response from /auth/register:", data);
+      console.log("Received token:", data.data.token);
+      const { token, email: userEmail, role } = data.data;
+      dispatch(loginSuccess({ userName: userEmail, token }));
+      navigate("/"); // Sử dụng navigate
+    } catch (err) {
+      dispatch(loginFailure("Signup failed"));
+    }
   };
 
   return (
     <div className={cx("container")}>
       <div className={cx("login-container")}>
         <div className={cx("logo")}>
-          <img src="./asset/img/logo/horizontal.png" alt="Logo" />
+          <img src="../../assets/img/logo/horizontal.png" alt="Logo" />
         </div>
         <div className={cx("signin-up")}>
           <div className={cx("login-panel")}>
@@ -86,7 +105,7 @@ function Login() {
                 </div>
                 <div className={cx("remember-forgot")}>
                   <a href="#" className={cx("forgot-link")}>
-                    Forgot password?
+                    Forgot Password?
                   </a>
                 </div>
                 <button className={cx("login-btn")} onClick={handleLogin}>
@@ -182,7 +201,7 @@ function Login() {
           </div>
         </div>
 
-        <button className={cx("google-btn")}>
+        <button className={cx("google-btn")} onClick={() => window.location.href = "http://localhost:8080/oauth2/authorization/google"}>
           <div className={cx("google-icon-wrapper")}>
             {/* SVG GOOGLE ICON */}
           </div>

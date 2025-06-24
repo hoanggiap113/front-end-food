@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.css';
 import logo from '../../assets/img/logo/logo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, checkAuth } from '../../store/authSlice';
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('John Doe');
-  const [showDropdown, setShowDropdown] = useState(false);
+  const { isLoggedIn, userName, token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = React.useState(false);
 
   useEffect(() => {
-    // Check localStorage for login state on mount
-    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const name = localStorage.getItem('userName') || 'John Doe';
-    setIsLoggedIn(loggedIn);
-    setUserName(name);
-  }, []);
+    const checkAuthStatus = () => {
+      console.log("Checking auth status with Redux state:", { isLoggedIn, userName, token });
+      if (token && userName) {
+        // Sử dụng dữ liệu từ Redux store, không gọi API
+        dispatch(checkAuth({ isLoggedIn: true, userName, token }));
+      } else {
+        dispatch(logout());
+        navigate("/login");
+      }
+    };
+    checkAuthStatus();
+  }, [dispatch, token, userName, navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); // Clear login state
-    localStorage.removeItem('userName'); // Clear user name
-    setIsLoggedIn(false);
-    setShowDropdown(false); // Hide dropdown
-    // Add logout logic (e.g., API call) here if needed
+    dispatch(logout());
+    setShowDropdown(false);
+    navigate("/login");
   };
 
   return (

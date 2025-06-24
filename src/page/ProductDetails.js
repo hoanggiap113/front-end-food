@@ -1,7 +1,6 @@
 // components/ProductDetails.js
 
 import React, { useState, useEffect } from 'react';
-import './ProductDetails.css';
 
 function ProductDetails({ onClose }) {
   const [currentSlide, setCurrentSlide] = useState(0);

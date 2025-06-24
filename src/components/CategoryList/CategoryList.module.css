@@ -1,0 +1,131 @@
+.categoryContainer {
+  max-width: 100%;
+  margin: 5%;
+}
+
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.categoryHeader h2 {
+  font-size: 2.25rem;
+  color: #3F4255;
+  font-weight: 300;
+}
+
+.showAll {
+  padding: 15px 20px;
+  background-color: #f0f2f7;
+  border: none;
+  border-radius: 5px;
+  color: #667085;
+  cursor: pointer;
+}
+
+.restaurantCarousel {
+  position: relative;
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.restaurantCard {
+  flex: 0 0 calc(25% - 15px);
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.restaurantImage {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+.restaurantImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.restaurantCard:hover .restaurantImage img {
+  transform: scale(1.05);
+}
+
+.restaurantLogo {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 5%;
+}
+
+.restaurantLogo img {
+  max-width: 100%;
+  max-height: 60px;
+}
+
+.foodDetail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 50%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.foodDetail h3 {
+  color: #ffc800;
+  font-size: 40px;
+}
+
+.foodDetail p {
+  color: orangered;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.restaurantCard:hover .foodDetail {
+  display: flex;
+}
+
+.addToCart,
+.buyNow {
+  height: 70%;
+  background-color: orange;
+  border-radius: 15px;
+  border: #bbb solid 1px;
+  cursor: pointer;
+  font-size: 100%;
+  color: #040603;
+}
+
+.addToCart:hover,
+.buyNow:hover {
+  background-color: var(--sub-color);
+  transform: scale(1.05);
+  color: orangered;
+}
+
+.addToCart {
+  width: 50%;
+}
+
+.buyNow {
+  width: 30%;
+}

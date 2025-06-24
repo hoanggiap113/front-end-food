@@ -1,6 +1,6 @@
 // Chuyển đổi từ HTML + Script sang ReactJS
 import React, { useState, useEffect } from 'react';
-import './Profile.css';
+import styles from './Profile.module.css';
 
 function Profile() {
   const [tab, setTab] = useState('general');
@@ -76,115 +76,109 @@ function Profile() {
   };
 
   return (
-    <div className="settings-container">
-      <nav className="sidebar">
-        <div className="app-header">
-          <div className="app-icon">AS</div>
-          <span className="app-title">Thông tin cá nhân</span>
-        </div>
-        <div className="menu-section">
-          <div className="menu-label">Thông tin chung</div>
-          <button className={`menu-item ${tab === 'general' ? 'active' : ''}`} onClick={() => handleTabSwitch('general')}>📋 Thông tin</button>
-          <button className={`menu-item ${tab === 'security' ? 'active' : ''}`} onClick={() => handleTabSwitch('security')}>🔒 Bảo mật</button>
-        </div>
-        <div className="menu-section">
-          <div className="menu-label">Other</div>
-          <button className="menu-item">💬 Contact support</button>
-          <button className="menu-item">🚪 Đăng xuất</button>
-        </div>
-      </nav>
-
-      <main className="main-content">
-        <div className="content-header">
-          <h1 className="content-title">{title}</h1>
-        </div>
-
-        {tab === 'general' && (
-          <div className="tab-content active">
-            <div className="profile-section">
-              <div className="profile-avatar">SE</div>
-              <div className="profile-info">
-                <div className="profile-title">Ảnh cá nhân</div>
-                <div className="profile-subtitle">Hỗ trợ ảnh PNG, JPG dưới 100MB</div>
-                <button className="btn btn-secondary" onClick={handleAvatarUpload}>Tải ảnh lên</button>
-              </div>
-            </div>
-
-            <form onSubmit={handleGeneralSubmit} id="general-form">
-              <div className="form-group">
-                <label className="form-label">Họ và tên</label>
-                <input className="form-input" value={fullName} onChange={e => setFullName(e.target.value)} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Địa chỉ giao hàng</label>
-                <input className="form-input" value={address} onChange={e => setAddress(e.target.value)} />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Email</label>
-                <div style={{ display: 'flex', gap: 12 }}>
-                  <input className="form-input" type="email" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: 1 }} />
-                  <span className="verify-badge">Verify</span>
-                </div>
-              </div>
-              <div className="phone-section">
-                <div>
-                  <div className="form-label" style={{ marginBottom: 4 }}>Số điện thoại</div>
-                  <div className="phone-info">{phone || 'Không có số điện thoại'}</div>
-                </div>
-                <button type="button" className="btn btn-secondary" onClick={handlePhoneUpdate}>
-                  {phone ? 'Cập nhật số điện thoại' : 'Thêm số điện thoại'}
-                </button>
-              </div>
-              <div className="form-actions">
-                <button type="submit" className="btn btn-primary">Cập nhật</button>
-              </div>
-            </form>
-
-            <div className="deactivate-section">
-              <div className="deactivate-title">Xoá tài khoản</div>
-              <div className="deactivate-subtitle">Điều này sẽ làm mất thông tin của bạn</div>
-              <button className="btn btn-danger" onClick={handleDelete}>Xoá tài khoản</button>
-            </div>
+    <div className={styles["wrapper"]}>
+      <div className={styles["settings-container"]}>
+        <nav className={styles["sidebar"]}>
+          <div className={styles["app-header"]}>
+            <div className={styles["app-icon"]}>AS</div>
+            <span className={styles["app-title"]}>Thông tin cá nhân</span>
           </div>
-        )}
+          <div className={styles["menu-section"]}>
+            <div className={styles["menu-label"]}>Thông tin chung</div>
+            <button className={`${styles["menu-item"]} ${tab === 'general' ? styles["active"] : ''}`} onClick={() => handleTabSwitch('general')}>📋 Thông tin</button>
+            <button className={`${styles["menu-item"]} ${tab === 'security' ? styles["active"] : ''}`} onClick={() => handleTabSwitch('security')}>🔒 Bảo mật</button>
+          </div>
+          <div className={styles["menu-section"]}>
+            <div className={styles["menu-label"]}>Other</div>
+            <button className={styles["menu-item"]}>💬 Contact support</button>
+            <button className={styles["menu-item"]}>🚪 Đăng xuất</button>
+          </div>
+        </nav>
 
-        {tab === 'security' && (
-          <div className="tab-content active">
-            <div className="security-section">
-              <div className="security-header">
-                <h3 className="security-title">Đổi mật khẩu</h3>
-                <p className="security-subtitle">Cập nhật mật khẩu để bảo mật tài khoản</p>
-              </div>
-              <form onSubmit={handlePasswordSubmit} className="password-form">
-                <div className="form-group">
-                  <label className="form-label">Mật khẩu hiện tại</label>
-                  <input name="current" type="password" className="form-input" value={passwords.current} onChange={handlePasswordChange} />
+        <main className={styles["main-content"]}>
+          <div className={styles["content-header"]}>
+            <h1 className={styles["content-title"]}>{title}</h1>
+          </div>
+
+          {tab === 'general' && (
+            <div className={`${styles["tab-content"]} ${styles["active"]}`}>
+
+              <form onSubmit={handleGeneralSubmit} id="general-form">
+                <div className={styles["form-group"]}>
+                  <label className={styles["form-label"]}>Họ và tên</label>
+                  <input className={styles["form-input"]} value={fullName} onChange={e => setFullName(e.target.value)} />
                 </div>
-                <div className="form-group">
-                  <label className="form-label">Mật khẩu mới</label>
-                  <input name="new" type="password" className="form-input" value={passwords.new} onChange={handlePasswordChange} />
-                  <div className="password-requirements">
-                    <small className={`requirement ${requirements.length ? 'valid' : ''}`}>Ít nhất 8 ký tự</small>
-                    <small className={`requirement ${requirements.upper ? 'valid' : ''}`}>Chữ in hoa</small>
-                    <small className={`requirement ${requirements.lower ? 'valid' : ''}`}>Chữ thường</small>
-                    <small className={`requirement ${requirements.number ? 'valid' : ''}`}>Số</small>
+                <div className={styles["form-group"]}>
+                  <label className={styles["form-label"]}>Địa chỉ giao hàng</label>
+                  <input className={styles["form-input"]} value={address} onChange={e => setAddress(e.target.value)} />
+                </div>
+                <div className={styles["form-group"]}>
+                  <label className={styles["form-label"]}>Email</label>
+                  <div style={{ display: 'flex', gap: 12 }}>
+                    <input className={styles["form-input"]} type="email" value={email} onChange={e => setEmail(e.target.value)} style={{ flex: 1 }} />
+                    <span className={styles["verify-badge"]}>Verify</span>
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="form-label">Xác nhận mật khẩu</label>
-                  <input name="confirm" type="password" className="form-input" value={passwords.confirm} onChange={handlePasswordChange} />
-                  <div className={`password-match-indicator ${passwords.confirm ? (passwords.new === passwords.confirm ? 'match' : 'no-match') : ''}`}>
-                    {passwords.confirm && (passwords.new === passwords.confirm ? '✓ Khớp' : '✗ Không khớp')}
+                <div className={styles["phone-section"]}>
+                  <div>
+                    <div className={styles["form-label"]} style={{ marginBottom: 4 }}>Số điện thoại</div>
+                    <div className={styles["phone-info"]}>{phone || 'Không có số điện thoại'}</div>
                   </div>
+                  <button type="button" className={`${styles["btn"]} ${styles["btn-secondary"]}`} onClick={handlePhoneUpdate}>
+                    {phone ? 'Cập nhật số điện thoại' : 'Thêm số điện thoại'}
+                  </button>
                 </div>
-                <div className="form-actions">
-                  <button type="submit" className="btn btn-primary">Đổi mật khẩu</button>
+                <div className={styles["form-actions"]}>
+                  <button type="submit" className={`${styles["btn"]} ${styles["btn-primary"]}`}>Cập nhật</button>
                 </div>
               </form>
+
+              <div className={styles["deactivate-section"]}>
+                <div className={styles["deactivate-title"]}>Xoá tài khoản</div>
+                <div className={styles["deactivate-subtitle"]}>Điều này sẽ làm mất thông tin của bạn</div>
+                <button className={`${styles["btn"]} ${styles["btn-danger"]}`} onClick={handleDelete}>Xoá tài khoản</button>
+              </div>
             </div>
-          </div>
-        )}
-      </main>
+          )}
+
+          {tab === 'security' && (
+            <div className={`${styles["tab-content"]} ${styles["active"]}`}>
+              <div className={styles["security-section"]}>
+                <div className={styles["security-header"]}>
+                  <h3 className={styles["security-title"]}>Đổi mật khẩu</h3>
+                  <p className={styles["security-subtitle"]}>Cập nhật mật khẩu để bảo mật tài khoản</p>
+                </div>
+                <form onSubmit={handlePasswordSubmit} className={styles["password-form"]}>
+                  <div className={styles["form-group"]}>
+                    <label className={styles["form-label"]}>Mật khẩu hiện tại</label>
+                    <input name="current" type="password" className={styles["form-input"]} value={passwords.current} onChange={handlePasswordChange} />
+                  </div>
+                  <div className={styles["form-group"]}>
+                    <label className={styles["form-label"]}>Mật khẩu mới</label>
+                    <input name="new" type="password" className={styles["form-input"]} value={passwords.new} onChange={handlePasswordChange} />
+                    <div className={styles["password-requirements"]}>
+                      <small className={`${styles["requirement"]} ${requirements.length ? styles["valid"] : ''}`}>Ít nhất 8 ký tự</small>
+                      <small className={`${styles["requirement"]} ${requirements.upper ? styles["valid"] : ''}`}>Chữ in hoa</small>
+                      <small className={`${styles["requirement"]} ${requirements.lower ? styles["valid"] : ''}`}>Chữ thường</small>
+                      <small className={`${styles["requirement"]} ${requirements.number ? styles["valid"] : ''}`}>Số</small>
+                    </div>
+                  </div>
+                  <div className={styles["form-group"]}>
+                    <label className={styles["form-label"]}>Xác nhận mật khẩu</label>
+                    <input name="confirm" type="password" className={styles["form-input"]} value={passwords.confirm} onChange={handlePasswordChange} />
+                    <div className={`${styles["password-match-indicator"]} ${passwords.confirm ? (passwords.new === passwords.confirm ? styles["match"] : styles["no-match"]) : ''}`}>
+                      {passwords.confirm && (passwords.new === passwords.confirm ? '✓ Khớp' : '✗ Không khớp')}
+                    </div>
+                  </div>
+                  <div className={styles["form-actions"]}>
+                    <button type="submit" className={`${styles["btn"]} ${styles["btn-primary"]}`}>Đổi mật khẩu</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+        </main>
+      </div>
     </div>
   );
 }

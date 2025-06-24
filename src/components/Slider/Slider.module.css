@@ -1,0 +1,88 @@
+.container {
+  width: 100%;
+  padding: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80vh;
+}
+
+.content {
+  position: relative;
+  bottom: 150px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btnDelivery {
+  background-color: white;
+  color: #333;
+  border: 2px solid #FFD700;
+}
+
+.btnTakeout {
+  background-color: white;
+  color: #333;
+  border: 2px solid #FFD700;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.foodImage {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.decorativeLeaf {
+  position: absolute;
+  width: 80px;
+  left: 10%;
+  bottom: 20%;
+  opacity: 0.7;
+  transform: rotate(-15deg);
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}

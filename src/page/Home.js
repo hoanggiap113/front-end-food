@@ -5,7 +5,6 @@ import Features from '../components/Features/Features';
 import CategoryList from '../components/CategoryList/CategoryList';
 import DeliverySection from '../components/DeliverySection/DeliverySection';
 import Specialities from '../components/Specialities/Specialities';
-
 function Home() {
   return (
     <>

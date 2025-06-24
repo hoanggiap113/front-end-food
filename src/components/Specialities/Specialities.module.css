@@ -1,0 +1,77 @@
+.spceialitiesContainer {
+  max-width: 100%;
+  margin: 5%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  font-size: 2.25rem;
+  color: #3F4255;
+  font-weight: 300;
+}
+
+.speccarouselContainer .carouselContainer {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  transition: transform 0.5s ease;
+  padding: 10px 0;
+}
+
+.carouselCard {
+  flex: 1 1 200px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carouselCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.filterMenu {
+  width: 100%;
+  height: 284px;
+  background-size: 100% auto;
+  margin: 5% 0;
+  position: relative;
+}
+
+.filterMenu h2 {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  font-size: 2.25rem;
+  color: #3F4255;
+  font-weight: 300;
+}

@@ -1,8 +1,7 @@
 // src/page/BillDetail.js
 
 import React, { useState } from 'react';
-import './BillDetail.css';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import styles from './BillDetail.module.css';
 
 function BillDetail() {
   const [formData, setFormData] = useState({
@@ -42,101 +41,90 @@ function BillDetail() {
   };
 
   return (
-    <Container className="my-5">
-      <h1 className="text-center mb-5 text-warning fw-bold">THÔNG TIN ĐƠN HÀNG</h1>
-      <Row className="g-4">
-        <Col md={7}>
-          <Card className="p-4 shadow-sm">
-            <h2 className="section-title mb-4">GIAO HÀNG ĐẾN</h2>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3">
-                <Form.Label>Tên <span className="text-warning">*</span></Form.Label>
-                <Form.Control id="name" value={formData.name} onChange={handleChange} isInvalid={!!errors.name} />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Họ <span className="text-warning">*</span></Form.Label>
-                <Form.Control id="lastName" value={formData.lastName} onChange={handleChange} isInvalid={!!errors.lastName} />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Số điện thoại <span className="text-warning">*</span></Form.Label>
-                <Form.Control type="tel" id="phone" value={formData.phone} onChange={handleChange} isInvalid={!!errors.phone} />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" id="email" value={formData.email} onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Nhập địa chỉ <span className="text-warning">*</span></Form.Label>
-                <Form.Control as="textarea" id="address" rows={3} value={formData.address} onChange={handleChange} isInvalid={!!errors.address} />
-              </Form.Group>
-              <Form.Text className="text-muted">
+    <div className={styles["wrapper"]}>
+      <div className={styles["container"]}>
+        <div className={styles["header"]}>
+          <h1 className={styles["header-h1"]}>THÔNG TIN ĐƠN HÀNG</h1>
+        </div>
+        <div className={styles["main-content"]}>
+          <div className={styles["delivery-section"]}>
+            <h2 className={styles["section-title"]}>GIAO HÀNG ĐẾN</h2>
+            <form onSubmit={handleSubmit}>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Tên <span className={styles["required"]}>*</span></label>
+                <input className={`${styles["form-control"]} ${errors.name ? styles["error"] : ""}`} id="name" value={formData.name} onChange={handleChange} />
+                {errors.name && <div className={styles["error-message"]}>{errors.name}</div>}
+              </div>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Họ <span className={styles["required"]}>*</span></label>
+                <input className={`${styles["form-control"]} ${errors.lastName ? styles["error"] : ""}`} id="lastName" value={formData.lastName} onChange={handleChange} />
+                {errors.lastName && <div className={styles["error-message"]}>{errors.lastName}</div>}
+              </div>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Số điện thoại <span className={styles["required"]}>*</span></label>
+                <input className={`${styles["form-control"]} ${errors.phone ? styles["error"] : ""}`} type="tel" id="phone" value={formData.phone} onChange={handleChange} />
+                {errors.phone && <div className={styles["error-message"]}>{errors.phone}</div>}
+              </div>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Email</label>
+                <input className={styles["form-control"]} type="email" id="email" value={formData.email} onChange={handleChange} />
+              </div>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Nhập địa chỉ <span className={styles["required"]}>*</span></label>
+                <textarea className={`${styles["form-control"]} ${styles["textarea"]} ${errors.address ? styles["error"] : ""}`} id="address" rows={3} value={formData.address} onChange={handleChange}></textarea>
+                {errors.address && <div className={styles["error-message"]}>{errors.address}</div>}
+              </div>
+              <div className={styles["delivery-note"]}>
                 Vui lòng nhập và chọn địa chỉ được gợi ý. Nếu không, vui lòng liên hệ hotline để được hỗ trợ.
-              </Form.Text>
-              <Form.Group className="mt-3">
-                <Form.Label>Ghi chú</Form.Label>
-                <Form.Control as="textarea" id="notes" rows={3} value={formData.notes} onChange={handleChange} />
-              </Form.Group>
-              <h3 className="section-title mt-4">PHƯƠNG THỨC THANH TOÁN</h3>
-              <div className="radio-group">
-                <Form.Check
-                  type="radio"
-                  id="paymentCash"
-                  name="payment"
-                  value="cash"
-                  label="Thanh toán bằng tiền mặt"
-                  checked={formData.payment === 'cash'}
-                  onChange={handleRadioChange}
-                />
-                <Form.Check
-                  type="radio"
-                  id="paymentBank"
-                  name="payment"
-                  value="bank"
-                  label="Thanh toán bằng chuyển khoản"
-                  checked={formData.payment === 'bank'}
-                  onChange={handleRadioChange}
-                />
               </div>
-              <Button variant="warning" type="submit" className="mt-4 w-100 fw-bold">
-                Đặt Mua
-              </Button>
-            </Form>
-          </Card>
-        </Col>
-
-        <Col md={5}>
-          <Card className="p-4 shadow-sm">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h4 className="fw-bold">CHI TIẾT ĐƠN HÀNG</h4>
-            </div>
-            <div className="d-flex align-items-center mb-3">
-              <img
-                src="https://via.placeholder.com/80x80"
-                alt="Gà sốt cay"
-                className="rounded me-3"
-                width="80"
-                height="80"
-              />
-              <div className="flex-grow-1">
-                <div className="fw-bold">2 GÀ SỐT CAY + 1 KHOAI TÂY CHIÊN + 1 NƯỚC NGỌT</div>
-                <div className="text-muted small">x 1</div>
+              <div className={styles["form-group"]}>
+                <label className={styles["form-label"]}>Ghi chú</label>
+                <textarea className={`${styles["form-control"]} ${styles["textarea"]}`} id="notes" rows={3} value={formData.notes} onChange={handleChange}></textarea>
               </div>
-              <div className="text-warning fw-bold">95,000 ₫</div>
+              <h3 className={styles["section-title"]}>PHƯƠNG THỨC THANH TOÁN</h3>
+              <div className={styles["shipping-methods"]}>
+                <div className={styles["radio-group"]}>
+                  <label className={styles["radio-option"]}>
+                    <input type="radio" id="paymentCash" name="payment" value="cash" checked={formData.payment === 'cash'} onChange={handleRadioChange} />
+                    Thanh toán bằng tiền mặt
+                  </label>
+                  <label className={styles["radio-option"]}>
+                    <input type="radio" id="paymentBank" name="payment" value="bank" checked={formData.payment === 'bank'} onChange={handleRadioChange} />
+                    Thanh toán bằng chuyển khoản
+                  </label>
+                </div>
+              </div>
+              <button type="submit" className={styles["submit-btn"]}>Đặt Mua</button>
+            </form>
+          </div>
+          <div className={styles["order-summary"]}>
+            <div className={styles["summary-header"]}>
+              <h4 className={styles["summary-title"]}>CHI TIẾT ĐƠN HÀNG</h4>
             </div>
-            <hr />
-            <div className="d-flex justify-content-between">
-              <span>Chi phí tạm tính</span>
-              <span>95,000 ₫</span>
+            <div className={styles["order-item"]}>
+              <img src="https://via.placeholder.com/80x80" alt="Gà sốt cay" className={styles["item-image"]} />
+              <div className={styles["item-details"]}>
+                <div className={styles["item-name"]}>2 GÀ SỐT CAY + 1 KHOAI TÂY CHIÊN + 1 NƯỚC NGỌT</div>
+                <div className={styles["item-quantity"]}>x 1</div>
+              </div>
+              <div className={styles["item-price"]}>95,000 ₫</div>
             </div>
-            <div className="text-muted small mb-2">(Đã bao gồm VAT 8%)</div>
-            <div className="d-flex justify-content-between fw-bold fs-5 border-top pt-3 mt-2 text-warning">
-              <span>Tổng Cộng</span>
-              <span>95,000 ₫</span>
+            <hr className={styles["summary-hr"]} />
+            <div className={styles["price-breakdown"]}>
+              <div className={styles["price-row"]}>
+                <span>Chi phí tạm tính</span>
+                <span>95,000 ₫</span>
+              </div>
+              <div className={styles["vat-note"]}>(Đã bao gồm VAT 8%)</div>
+              <div className={styles["total-row"]}>
+                <span>Tổng Cộng</span>
+                <span>95,000 ₫</span>
+              </div>
             </div>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

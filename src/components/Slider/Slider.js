@@ -1,49 +1,22 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import sliderImage from '../Slider/Photo.svg';
-import '../Slider/Slider.css';
+import styles from './Slider.module.css';
+import foodImage from '../../assets/img/Slider/Photo.svg'; // Updated path
+
 function Slider() {
-   const slides = [
-    {
-      title: 'Your Food court\nat home',
-      delivery: 'Delivery',
-      takeout: 'Takeout',
-      sub1: 'Order in',
-      sub2: 'Grab and go',
-      img: sliderImage
-    },
-    // thêm slide khác nếu muốn
-  ];
-
   return (
-    <div className="slider-container">
-      <Swiper spaceBetween={30} slidesPerView={1}>
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div className="slide-content">
-              <div className="content">
-                <h1 className="title">{slide.title.split('\n').map((line, i) => <div key={i}>{line}</div>)}</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Your Food court<br />at home</h1>
+        <div className={styles.buttons}>
+          <a href="#delivery" className={`${styles.btn} ${styles.btnDelivery}`}>Delivery<br />Order in</a>
+          <a href="#takeout" className={`${styles.btn} ${styles.btnTakeout}`}>Takeout<br />Grab and go</a>
+        </div>
+      </div>
+      <div className={styles.imageContainer}>
+        <img src={foodImage} alt="Food" className={styles.foodImage} />
 
-                <div className="buttons">
-                  <a href="#" className="btn btn-delivery">
-                    <strong>{slide.delivery}</strong><br />
-                    <small>{slide.sub1}</small>
-                  </a>
-                  <a href="#" className="btn btn-takeout">
-                    <strong>{slide.takeout}</strong><br />
-                    <small>{slide.sub2}</small>
-                  </a>
-                </div>
-              </div>
-
-              <div className="image-container">
-                <img src={slide.img} alt="Slider" />
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <span className={styles.caption}>Fresh ingredients</span>
+      </div>
     </div>
   );
 }

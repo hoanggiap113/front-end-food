@@ -1,7 +1,7 @@
 // File: OrderForm.js
 
 import React, { useState } from 'react';
-import './OrderForm.css';
+import styles from './OrderForm.module.css';
 
 const OrderForm = () => {
   const [formData, setFormData] = useState({
@@ -38,27 +38,27 @@ const OrderForm = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
+    <div className={styles.container}>
+      <div className={styles.header}>
         <h1>THÔNG TIN ĐƠN HÀNG</h1>
       </div>
-      <div className="main-content">
-        <form className="delivery-section" onSubmit={handleSubmit}>
-          <h2 className="section-title">GIAO HÀNG ĐẺN</h2>
+      <div className={styles.mainContent}>
+        <form className={styles.deliverySection} onSubmit={handleSubmit}>
+          <h2 className={styles.sectionTitle}>GIAO HÀNG ĐẺN</h2>
 
           {['name', 'surname', 'phone', 'email'].map((field) => (
-            <div className="form-group" key={field}>
+            <div className={styles.formGroup} key={field}>
               <label htmlFor={field}>
                 {field === 'name' && 'Tên'}
                 {field === 'surname' && 'Họ'}
                 {field === 'phone' && 'Số điện thoại'}
                 {field === 'email' && 'Email'}{' '}
-                {field !== 'email' && <span className="required">*</span>}
+                {field !== 'email' && <span className={styles.required}>*</span>}
               </label>
               <input
                 type={field === 'email' ? 'email' : 'text'}
                 id={field}
-                className="form-control"
+                className={styles.formControl}
                 value={formData[field]}
                 onChange={handleChange}
                 required={field !== 'email'}
@@ -66,37 +66,37 @@ const OrderForm = () => {
             </div>
           ))}
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="address">
-              Nhập địa chỉ <span className="required">*</span>
+              Nhập địa chỉ <span className={styles.required}>*</span>
             </label>
             <textarea
               id="address"
-              className="form-control textarea"
+              className={styles.formControl + ' ' + styles.textarea}
               value={formData.address}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="notes">Ghi chú</label>
             <textarea
               id="notes"
-              className="form-control textarea"
+              className={styles.formControl + ' ' + styles.textarea}
               value={formData.notes}
               onChange={handleChange}
               placeholder="Ghi chú cho đơn hàng..."
             />
           </div>
 
-          <div className="shipping-methods">
-            <h3 className="section-title">PHƯƠNG THỊC THANH TOÁN</h3>
-            <div className="radio-group">
+          <div className={styles.shippingMethods}>
+            <h3 className={styles.sectionTitle}>PHƯƠNG THỊC THANH TOÁN</h3>
+            <div className={styles.radioGroup}>
               {['cash', 'bank'].map((type) => (
                 <label
                   key={type}
-                  className={`radio-option ${formData.payment === type ? 'selected' : ''}`}
+                  className={`${styles.radioOption} ${formData.payment === type ? styles.selected : ''}`}
                 >
                   <input
                     type="radio"
@@ -113,39 +113,39 @@ const OrderForm = () => {
             </div>
           </div>
 
-          <button type="submit" className="submit-btn">
+          <button type="submit" className={styles.submitBtn}>
             Đặt mua
           </button>
         </form>
 
-        <div className="order-summary">
-          <div className="summary-header">
-            <h3 className="summary-title">CHI TIẾT ĐƠN HÀNG</h3>
+        <div className={styles.orderSummary}>
+          <div className={styles.summaryHeader}>
+            <h3 className={styles.summaryTitle}>CHI TIẾT ĐƠN HÀNG</h3>
           </div>
-          <div className="order-item">
+          <div className={styles.orderItem}>
             <img
               src="https://via.placeholder.com/80x80.png?text=Food"
               alt="Gà sốt cay"
-              className="item-image"
+              className={styles.itemImage}
             />
-            <div className="item-details">
-              <div className="item-name">
+            <div className={styles.itemDetails}>
+              <div className={styles.itemName}>
                 2 GÀ SỐT CAY + 1 KHOAI TÂY CHIÊN Vừa + 1 NƯỚc NGỌT
               </div>
-              <div className="item-quantity">x 1</div>
+              <div className={styles.itemQuantity}>x 1</div>
             </div>
-            <div className="item-price">+ 95,000 ₫</div>
+            <div className={styles.itemPrice}>+ 95,000 ₫</div>
           </div>
 
-          <div className="price-breakdown">
-            <div className="price-row">
+          <div className={styles.priceBreakdown}>
+            <div className={styles.priceRow}>
               <span>Chi phí tạm tính</span>
               <span>95,000 ₫</span>
             </div>
-            <div className="price-row vat-note">
+            <div className={styles.priceRow + ' ' + styles.vatNote}>
               Đã bao gồm giá thuế VAT 8%
             </div>
-            <div className="total-row">
+            <div className={styles.totalRow}>
               <span>Tổng Cộng</span>
               <span>95,000 ₫</span>
             </div>

@@ -16,11 +16,12 @@ function CategoryList() {
       try {
         setLoading(true);
         const response = await axiosInstance.get('/');
+        console.log('API response:', response.data); // Kiểm tra dữ liệu trả về
         const formattedCategories = response.data.map((product) => ({
           id: product.id,
           name: product.name,
-          price: `${product.price.toLocaleString('vi-VN')}d`,
-          image: product.image_url || `./asset/img/category-food/default${product.id}.jpg`
+          price: `${product.price.toLocaleString('vi-VN')}đ`, // Sửa 'd' thành 'đ' cho đúng ký hiệu tiền tệ
+          image: product.image_url || 'https://via.placeholder.com/150' // Sử dụng ảnh placeholder nếu image_url không tồn tại
         }));
         setCategories(formattedCategories);
         setLoading(false);
@@ -65,7 +66,11 @@ function CategoryList() {
     <div className={styles.categoryContainer}>
       <div className={styles.categoryHeader}>
         <h2>Các món ăn</h2>
-        <button className={styles.showAll} onClick={handleShowAllClick} style={{ display: categories.length > 4 ? 'block' : 'none' }}>
+        <button
+          className={styles.showAll}
+          onClick={handleShowAllClick}
+          style={{ display: categories.length > 4 ? 'block' : 'none' }}
+        >
           {showAll ? 'Ẩn bớt' : 'Show all'}
         </button>
       </div>
@@ -80,7 +85,13 @@ function CategoryList() {
               onClick={() => handleProductClick(item.id)}
             >
               <div className={styles.restaurantImage}>
-                <img src={item.image} alt={item.name} />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/150'; // Ảnh thay thế nếu không tải được
+                  }}
+                />
                 <div className={styles.foodDetail}>
                   <h3>{item.name}</h3>
                   <p>{item.price}</p>

@@ -1,26 +1,86 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axiosInstance from '../../axiosConfig'; // Điều chỉnh đường dẫn nếu cần
 import styles from './CategoryList.module.css';
-
-const categories = [
-
-  { name: 'Bún chả', price: '120.000d' },
-  { name: 'Bún trộn', price: '120.000d'},
-  { name: 'Gà rán', price: '120.000d'},
-
-];
+import ProductDetail from '../ProductDetail/ProductDetail'; // Điều chỉnh đường dẫn nếu cần
 
 function CategoryList() {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const carouselRef = useRef(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const response = await axiosInstance.get('/');
+        const formattedCategories = response.data.map((product) => ({
+          id: product.id,
+          name: product.name,
+          price: `${product.price.toLocaleString('vi-VN')}d`,
+          image: product.image_url || `./asset/img/category-food/default${product.id}.jpg`
+        }));
+        setCategories(formattedCategories);
+        setLoading(false);
+      } catch (err) {
+        setError('Không thể tải danh mục món ăn');
+        setLoading(false);
+        console.error('Error fetching products:', err);
+        if (err.response?.status === 401) {
+          console.log('Endpoint yêu cầu đăng nhập');
+        }
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  if (loading) return <div className={styles.loading}>Đang tải...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
+
+  const handleShowAllClick = () => {
+    setShowAll(!showAll);
+    setTimeout(() => {
+      if (!showAll && carouselRef.current) {
+        const nextCards = carouselRef.current.querySelectorAll('.restaurantCard:nth-child(n+5)');
+        if (nextCards.length > 0) {
+          nextCards[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } else if (carouselRef.current) {
+        carouselRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
+  };
+
+  const handleProductClick = (id) => {
+    setSelectedProductId(id);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProductId(null);
+  };
+
   return (
     <div className={styles.categoryContainer}>
       <div className={styles.categoryHeader}>
         <h2>Các món ăn</h2>
-        <button className={styles.showAll}>Show all</button>
+        <button className={styles.showAll} onClick={handleShowAllClick} style={{ display: categories.length > 4 ? 'block' : 'none' }}>
+          {showAll ? 'Ẩn bớt' : 'Show all'}
+        </button>
       </div>
       <div className={styles.restaurantCarousel}>
-        <div className={styles.carouselContainer}>
-          {categories.map((item, index) => (
-            <div className={styles.restaurantCard} key={index}>
+        <div className={styles.carouselContainer} ref={carouselRef}>
+          {categories.map((item) => (
+            <div
+              className={`${styles.restaurantCard} ${
+                !showAll && categories.indexOf(item) >= 4 ? styles.hidden : ''
+              }`}
+              key={item.id}
+              onClick={() => handleProductClick(item.id)}
+            >
               <div className={styles.restaurantImage}>
+                <img src={item.image} alt={item.name} />
                 <div className={styles.foodDetail}>
                   <h3>{item.name}</h3>
                   <p>{item.price}</p>
@@ -34,6 +94,9 @@ function CategoryList() {
           ))}
         </div>
       </div>
+      {selectedProductId && (
+        <ProductDetail productId={selectedProductId} onClose={handleCloseModal} />
+      )}
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Footer.module.css';
-import logo from '../assets/img/logo.png';
-import appStore from '../assets/img/appstore.png';
-import googlePlay from '../assets/img/googleplay.png';
+import logo from '../../assets/img/logo/logo.png';
+import insta from '../../assets/img/footer/insta.svg';
+import twitter from '../../assets/img/footer/twitter.svg';
 
 function Footer() {
   return (
@@ -44,8 +44,8 @@ function Footer() {
       </div>
       <div className={styles.footerBottom}>
         <div className={styles.footerBottomLeft}>
-          <a href="#appstore"><img src={appStore} alt="App Store" /></a>
-          <a href="#googleplay"><img src={googlePlay} alt="Google Play" /></a>
+          <a href="#insta"><img src={insta} alt="Insta" /></a>
+          <a href="#twitter"><img src={twitter} alt="Twitter" /></a>
         </div>
         <div className={styles.footerBottomRight}>
           <span className={styles.cl}>Privacy</span>

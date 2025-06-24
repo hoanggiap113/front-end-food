@@ -4,7 +4,7 @@ import CustomerList from './CustomerList';
 import CategoryList from './CategoryList';
 import OrderList from './OrderList';
 import PromotionList from './PromotionList';
-
+import './Admin.css';
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('Sản phẩm');
 

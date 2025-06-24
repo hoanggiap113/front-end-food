@@ -1,35 +1,8 @@
-html {
-    font-size: 16px;
-}
-
-h2 {
-    font-size: 2.25rem;
-    color: #3F4255;
-    font-weight: 300;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-:root {
-    --fs-body: 16px;
-    --main-color: #FFFFFF;
-    --sub-color: #FFE145;
-}
-
-body {
-    background-color: #ffffff;
-}
 
 .container {
     display: flex;
     min-height: 100vh;
 }
-
 /* Sidebar Styles */
 .sidebar {
     width: 240px;
@@ -43,7 +16,6 @@ body {
 .logo {
     margin-top: 10%;
     border-bottom: 1px solid #e9ecef;
-    /* background-image: url(/asset/img/logo/horizontal.png); */
     width: 80%;
     height: 10%;
     background-position: center;

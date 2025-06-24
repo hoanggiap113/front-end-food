@@ -1,15 +1,19 @@
+/* Slider.module.css */
 .container {
   width: 100%;
   padding: 5%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   min-height: 80vh;
+  position: relative;
+  overflow: hidden; /* Ngăn tràn nội dung */
 }
 
 .content {
   position: relative;
   bottom: 150px;
+  z-index: 1; /* Đảm bảo nội dung nằm trên hình ảnh */
 }
 
 .title {
@@ -18,6 +22,7 @@
   color: #333;
   margin-bottom: 20px;
   line-height: 1.2;
+  max-width: 500px; /* Giới hạn chiều rộng tiêu đề */
 }
 
 .buttons {
@@ -35,15 +40,16 @@
   font-size: 16px;
   transition: all 0.3s ease;
   text-decoration: none;
+  display: inline-block; /* Đảm bảo nút hiển thị đúng trong React */
 }
 
-.btnDelivery {
+.btn-delivery {
   background-color: white;
   color: #333;
   border: 2px solid #FFD700;
 }
 
-.btnTakeout {
+.btn-takeout {
   background-color: white;
   color: #333;
   border: 2px solid #FFD700;
@@ -54,35 +60,81 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.imageContainer {
+.image-container {
   flex: 1;
   display: flex;
   justify-content: center;
   position: relative;
+  max-width: 50%; /* Giới hạn chiều rộng hình ảnh */
 }
 
-.foodImage {
+.food-image {
   width: 100%;
   max-width: 450px;
   height: auto;
   border-radius: 50%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
 }
 
-.decorativeLeaf {
+.decorative-leaf {
   position: absolute;
   width: 80px;
   left: 10%;
   bottom: 20%;
   opacity: 0.7;
   transform: rotate(-15deg);
+  z-index: -1; /* Đặt lá phía sau hình ảnh */
+}
+
+.features-container {
+  width: 100%;
+  max-width: 1200px; /* Giới hạn chiều rộng container */
+  margin: 0 auto; /* Canh giữa */
+  padding: 20px 5%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 8px;
+  position: relative;
+  top: -50px; /* Nâng lên một chút để liền mạch với slider */
+  z-index: 2; /* Đảm bảo hiển thị trên slider */
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  text-align: center;
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  margin: 0 auto; /* Canh giữa icon */
+}
+
+.feature-text {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #666;
+  max-width: 150px; /* Giới hạn chiều rộng văn bản */
 }
 
 .caption {
   position: absolute;
-  right: 0;
+  right: 5%;
   top: 10px;
   font-size: 14px;
   color: #666;
   font-style: italic;
+  z-index: 1;
 }

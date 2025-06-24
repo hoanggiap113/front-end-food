@@ -46,3 +46,18 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html {
+  font-size: 16px;
+}
+
+:root {
+  --fs-body: 16px;
+  --main-color: #FFFFFF;
+  --sub-color: #FFE145;
+}

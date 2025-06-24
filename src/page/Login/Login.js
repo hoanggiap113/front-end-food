@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, loginFailure } from '../../store/authSlice';
 import axiosInstance from '../../axiosConfig';
 import { useNavigate } from 'react-router-dom'; // Thêm useNavigate
+import logo from '../../assets/img/logo/horizontal.png';
 const cx = classNames.bind(styles);
 
 function Login() {
@@ -51,7 +52,7 @@ function Login() {
       console.log("Received token:", data.data.token);
       const { token, email: userEmail, role } = data.data;
       dispatch(loginSuccess({ userName: userEmail, token }));
-      navigate("/"); // Sử dụng navigate
+      navigate("/login"); // Sử dụng navigate
     } catch (err) {
       dispatch(loginFailure("Signup failed"));
     }
@@ -61,7 +62,7 @@ function Login() {
     <div className={cx("container")}>
       <div className={cx("login-container")}>
         <div className={cx("logo")}>
-          <img src="../../assets/img/logo/horizontal.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
         <div className={cx("signin-up")}>
           <div className={cx("login-panel")}>
@@ -203,7 +204,7 @@ function Login() {
 
         <button className={cx("google-btn")} onClick={() => window.location.href = "http://localhost:8080/oauth2/authorization/google"}>
           <div className={cx("google-icon-wrapper")}>
-            {/* SVG GOOGLE ICON */}
+    
           </div>
           <span className={cx("btn-text")}>Sign in with Google</span>
         </button>

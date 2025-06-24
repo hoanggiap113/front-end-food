@@ -19,7 +19,6 @@ function Navbar() {
         dispatch(checkAuth({ isLoggedIn: true, userName, token }));
       } else {
         dispatch(logout());
-        navigate("/login");
       }
     };
     checkAuthStatus();
@@ -28,7 +27,7 @@ function Navbar() {
   const handleLogout = () => {
     dispatch(logout());
     setShowDropdown(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (

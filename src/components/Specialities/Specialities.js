@@ -28,9 +28,6 @@ function Specialities() {
           ))}
         </div>
       </div>
-      <div className={styles.filterMenu}>
-        <h2>Explore Our Menu</h2>
-      </div>
     </div>
   );
 }

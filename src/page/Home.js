@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Slider from '../components/Slider/Slider';
-import Features from '../components/Features/Features';
 import CategoryList from '../components/CategoryList/CategoryList';
-import DeliverySection from '../components/DeliverySection/DeliverySection';
+// import DeliverySection from '../components/DeliverySection/DeliverySection';
 import Specialities from '../components/Specialities/Specialities';
+import Footer from '../components/Footer/Footer';
 import { useSelector } from 'react-redux';
 
 function Home() {
@@ -19,10 +19,10 @@ function Home() {
       <div className="App">
         <Navbar />
         <Slider />
-        <Features />
         <CategoryList />
-        <DeliverySection />
+        {/* <DeliverySection /> */}
         <Specialities />
+        <Footer />
       </div>
     </>
   );

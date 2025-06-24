@@ -1,0 +1,207 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 15px 100px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #666;
+    border-bottom: 2px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    color: #ff7300;
+    border-bottom: 2px solid #ff7300;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./Colorful\ Retro\ Cartoon\ Playful\ Groovy\ Illustrative\ Foodie\ Favorite\ Food\ Presentation.png') no-repeat;
+    background-size: cover;
+    padding:150px;
+}
+
+
+.login-container {
+    width: 100%;
+    height: auto;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-up {
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    transform: scale(2.5);
+}
+
+.login-panel {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    margin-right: 8px;
+}
+
+.forgot-link {
+    color: #ff7300;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ff7300;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.signup-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.signup-btn,
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ffae00 0%, #ddff00 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #dadce0;
+    border-radius: 24px;
+    padding: 1px;
+    height: 46px;
+    width: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5%;
+}
+
+.google-btn:hover {
+    background-color: #f8f8f8;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.google-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 3px;
+}
+
+.btn-text {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #3c4043;
+    margin-left: 8px;
+    flex-grow: 1;
+    justify-content: center;
+    padding-right: 24px;
+}
+
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}

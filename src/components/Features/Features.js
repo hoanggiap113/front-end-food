@@ -8,7 +8,7 @@ function Features() {
       <div className="features-container">
         <div className="feature">
           <div className="feature-icon">
-            <img src="/asset/img/icons/fast-delivery.svg" alt="Fast Delivery" />
+            <img src="../asset/img/icons/fast-delivery.svg" alt="Fast Delivery" />
           </div>
           <div className="feature-text">
             <strong>Delivery in all parts</strong><br />
@@ -18,7 +18,7 @@ function Features() {
 
         <div className="feature">
           <div className="feature-icon">
-            <img src="/asset/img/icons/free-delivery.svg" alt="Free Delivery" />
+            <img src="../asset/img/icons/free-delivery.svg" alt="Free Delivery" />
           </div>
           <div className="feature-text">
             <strong>Free delivery</strong><br />
@@ -28,7 +28,7 @@ function Features() {
 
         <div className="feature">
           <div className="feature-icon">
-            <img src="/asset/img/icons/fresh-food.svg" alt="Fresh Products" />
+            <img src="../asset/img/icons/fresh-food.svg" alt="Fresh Products" />
           </div>
           <div className="feature-text">
             <strong>Only fresh</strong><br />
